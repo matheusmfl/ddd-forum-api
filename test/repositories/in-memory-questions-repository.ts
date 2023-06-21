@@ -1,11 +1,20 @@
-import { IAnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
-import { Answer } from "@/domain/forum/enterprise/entities/answer";
+import { IQuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
+import { Question } from "@/domain/forum/enterprise/entities/question";
 
-export class InMemoryAnswersRepository implements IAnswersRepository {
-  public items: Answer[] = []
+export class InMemoryQuestionsRepository implements IQuestionsRepository {
+  public items: Question[] = []
+  async findBySlug(slug: string): Promise<Question | null> {
+    const question = this.items.find(item => item.slug.value === slug);
 
-  async create(answer: Answer) {
-    this.items.push(answer)
+    if(!question){
+      return null
+    }
+
+    return question
+  }
+
+  async create(question: Question) {
+    this.items.push(question)
   }
 
 } 
