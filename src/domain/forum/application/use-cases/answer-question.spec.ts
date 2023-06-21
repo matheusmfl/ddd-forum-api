@@ -1,9 +1,9 @@
-import { AnswerQuestionUseCase } from './answer-question'
-import { IAnswersRepository } from '../repositories/answers-repository'
-import { Answer } from '../entities/answer'
+import { Answer } from "../../enterprise/entities/answer"
+import { IAnswersRepository } from "../repositories/answers-repository"
+import { AnswerQuestionUseCase } from "./answer-question"
 
 const fakeAnswersRepository: IAnswersRepository = {
-  create: async function (answer: Answer): Promise<void> {},
+  create: async function (answer: Answer): Promise<void> { },
 }
 
 test('Create an answer', async () => {
