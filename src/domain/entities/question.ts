@@ -1,8 +1,8 @@
-import { Entity } from "@/core/entity/entity";
-import { UniqueEntityId } from "@/core/entity/unique-entity-id";
-import { Optional } from "@/core/types/optional";
-import { Slug } from "./value-objects/slug";
-import dayjs from "dayjs";
+import { Entity } from '@/core/entity/entity'
+import { UniqueEntityId } from '@/core/entity/unique-entity-id'
+import { Optional } from '@/core/types/optional'
+import { Slug } from './value-objects/slug'
+import dayjs from 'dayjs'
 
 interface IQuestionProps {
   authorId: UniqueEntityId
@@ -74,12 +74,18 @@ export class Question extends Entity<IQuestionProps> {
     this.touch()
   }
 
-  static create(props: Optional<IQuestionProps, 'createdAt' | 'slug'>, id?: UniqueEntityId) {
-    const question = new Question({
-      ...props,
-      slug: props.slug ?? Slug.createFromText(props.title),
-      createdAt: new Date()
-    }, id)
+  static create(
+    props: Optional<IQuestionProps, 'createdAt' | 'slug'>,
+    id?: UniqueEntityId,
+  ) {
+    const question = new Question(
+      {
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.title),
+        createdAt: new Date(),
+      },
+      id,
+    )
 
     return question
   }
